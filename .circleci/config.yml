@@ -10,7 +10,7 @@ jobs:
           name: "build"
           command: "dotnet build"
   
-  workflows:
-    app-workflow:
-      jobs:
-        - build
+workflows:
+  app-workflow:
+    jobs:
+      - build
