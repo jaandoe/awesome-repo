@@ -9,8 +9,26 @@ jobs:
       - run:
           name: "build"
           command: "dotnet build"
+  test:
+    docker:
+      - image: mcr.microsoft.com/dotnet/sdk:6.0
+    steps:
+      - checkout
+      - run:
+          name: "test"
+          command: "dotnet build"
+  scan:
+    docker:
+      - image: mcr.microsoft.com/dotnet/sdk:6.0
+    steps:
+      - checkout
+      - run:
+          name: "scan"
+          command: "dotnet build"
   
 workflows:
-  app-workflow:
+  checks:
     jobs:
       - build
+      - test
+      - scan
