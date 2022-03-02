@@ -33,3 +33,18 @@ jobs:
       - run:
           name: "scan"
           command: "dotnet build"
+  
+  workflows:
+    lint:
+      jobs:
+        - lint
+    build:
+      jobs:
+        - build
+    test:
+      jobs:
+        - test
+    scan:
+      jobs:
+        - scan
+  
