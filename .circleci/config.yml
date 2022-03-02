@@ -1,0 +1,50 @@
+version: 2.1
+
+jobs:
+  lint:
+    docker:
+      - image: mcr.microsoft.com/dotnet/sdk:6.0
+    steps:
+      - checkout
+      - run:
+          name: "lint"
+          command: "exit -1"  
+  build:
+    docker:
+      - image: mcr.microsoft.com/dotnet/sdk:6.0
+    steps:
+      - checkout
+      - run:
+          name: "build"
+          command: "dotnet build"
+  test:
+    docker:
+      - image: mcr.microsoft.com/dotnet/sdk:6.0
+    steps:
+      - checkout
+      - run:
+          name: "test"
+          command: "dotnet build"
+  scan:
+    docker:
+      - image: mcr.microsoft.com/dotnet/sdk:6.0
+    steps:
+      - checkout
+      - run:
+          name: "scan"
+          command: "dotnet build"
+  
+  workflows:
+    lint:
+      jobs:
+        - lint
+    build:
+      jobs:
+        - build
+    test:
+      jobs:
+        - test
+    scan:
+      jobs:
+        - scan
+  
